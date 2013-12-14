@@ -1,14 +1,18 @@
-why = 300
-whx = 200
-
+--
+-- Please run while you still can!
+--
 -- RGB
 --
--- Dark
--- 
---
+-- Dark 0x0f380f 15 56 15
+-- Still dark 0x306230 48 98 48
+-- Bit light 0x8bac0f 139 172 15
+-- Light 0x9bbc0f 155 188 15
 --
 --
 require "dialog"
+require "char_data"
+
+story_num = 1
 
 function love.load()
 	love.graphics.setBackgroundColor( 15, 56, 15)
@@ -18,6 +22,8 @@ function love.load()
 
 	-- art here
 	png_dialog = love.graphics.newImage("art/dialogbox.png")
+
+	dialog_text = ""
 end
 
 function love.draw()
@@ -28,8 +34,7 @@ function love.draw()
 	for i,v in ipairs(onscreens) do
     	love.graphics.draw(v.art, v.x, v.y)
 	end
-	love.graphics.draw(png_dialog, 0, 0)
-	love.graphics.print("Hello", 8, 104)
+	love.graphics.print(dialog_text, 8, 104)
 end
 
 function love.update(dt)
@@ -42,7 +47,14 @@ function love.update(dt)
 			table.remove( logos, 1 )
 			onscreens[1].y = 0
 			onscreens[1].art = love.graphics.newImage("art/persons/blank.png")
+			onscreens[2].y = 0
+			onscreens[2].art = love.graphics.newImage("art/dialogbox.png")
+			dialog_text = dialogs[story_num].a 
+			story_num = story_num + 1
 		end
+	end
+	if dialog_text == dialogs[story_num].a then
+		dialog_text = dialogs[story_num].main
 	end
 end
 
@@ -52,14 +64,4 @@ for i=1,2 do
     logo.x = 15
     logo.y = -140
     table.insert(logos, logo)
-end
-
-
-onscreens = {}
-for i=1,2 do
-    onscreen = {}
-    onscreen.x = 0
-    onscreen.y = -140
-    onscreen.art = love.graphics.newImage("art/persons/char1.png")
-    table.insert(onscreens, onscreen)
 end
