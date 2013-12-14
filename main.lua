@@ -18,8 +18,6 @@ function love.load()
 
 	-- art here
 	png_dialog = love.graphics.newImage("art/dialogbox.png")
-	png_char1 = love.graphics.newImage("art/persons/blank.png")
-	png_char2 = love.graphics.newImage("art/persons/char1.png")
 end
 
 function love.draw()
@@ -43,6 +41,7 @@ function love.update(dt)
 			--love.audio.play(logosound)
 			table.remove( logos, 1 )
 			onscreens[1].y = 0
+			onscreens[1].art = love.graphics.newImage("art/persons/blank.png")
 		end
 	end
 end
@@ -61,6 +60,6 @@ for i=1,2 do
     onscreen = {}
     onscreen.x = 0
     onscreen.y = -140
-    onscreen.art = png_char1
+    onscreen.art = love.graphics.newImage("art/persons/char1.png")
     table.insert(onscreens, onscreen)
 end
