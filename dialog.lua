@@ -1,8 +1,23 @@
 -- Intro
+
+onscreendialogs = {}
+
+function onscreendialogs:load()
+	-- body
+end
+
+function onscreendialogs:dt(dt)
+	-- body
+end
+
+function onscreendialogs:draw()
+	-- body
+end
+
 dialogs = {}
 for i=1,12 do
     dialog = {}
-    dialog.main = "123456789012345678\nThat should be long"
+    dialog.main = "123456789012345678\nThat should be long\nlonglong"
     dialog.a = "Answer A"
     dialog.b = "Answer B"
     dialog.qa = "Question"
@@ -24,7 +39,7 @@ dialogs[1].canchoose = false
 dialogs[1].skipto = 0
 dialogs[1].artdisplay = 1
 
-dialogs[2].main = "123456789012345678\nThat should be long"
+dialogs[2].main = "123456789012345678\nThat should be long\nlonglongff"
 dialogs[2].a = "Answer A"
 dialogs[2].b = "Answer B"
 dialogs[2].qa = "Question A"

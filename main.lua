@@ -11,26 +11,24 @@
 --
 require "dialog"
 require "char_data"
-
+require "logo"
 story_num = 1
 
 function love.load()
 	love.graphics.setBackgroundColor( 15, 56, 15)
-	logosound = love.audio.newSource("sound/start.wav", "static")
-	logod = love.graphics.newImage("art/love.png")
+	intrologo:load()
 	background = love.graphics.newImage("art/background.png")
-
+	font = love.graphics.newFont(9)
+	love.graphics.setFont(font)
 	-- art here
 	png_dialog = love.graphics.newImage("art/dialogbox.png")
-
+	onscreens[1].art = love.graphics.newImage("art/persons/blank.png")
+	onscreens[2].art = love.graphics.newImage("art/dialogbox.png")
 	dialog_text = ""
 end
 
 function love.draw()
-	love.graphics.draw(background, 0, 0)
-	for i,v in ipairs(logos) do
-    	love.graphics.draw(logod, v.x, v.y)
-	end
+	intrologo:draw()
 	for i,v in ipairs(onscreens) do
     	love.graphics.draw(v.art, v.x, v.y)
 	end
@@ -38,30 +36,9 @@ function love.draw()
 end
 
 function love.update(dt)
-	for i,v in ipairs(logos) do
-		if v.y < 5 then
-			v.y = v.y + dt + 0.2
-		end
-		if v.y >= 5  then
-			--love.audio.play(logosound)
-			table.remove( logos, 1 )
-			onscreens[1].y = 0
-			onscreens[1].art = love.graphics.newImage("art/persons/blank.png")
-			onscreens[2].y = 0
-			onscreens[2].art = love.graphics.newImage("art/dialogbox.png")
-			dialog_text = dialogs[story_num].a 
-			story_num = story_num + 1
-		end
-	end
+	intrologo:dt(dt)
 	if dialog_text == dialogs[story_num].a then
 		dialog_text = dialogs[story_num].main
+		story_num = story_num + 1
 	end
-end
-
-logos = {}
-for i=1,2 do
-    logo = {}
-    logo.x = 15
-    logo.y = -140
-    table.insert(logos, logo)
 end
