@@ -9,6 +9,7 @@
 -- Light 0x9bbc0f 155 188 15
 --
 --
+
 require "dialog"
 require "char_data"
 require "logo"

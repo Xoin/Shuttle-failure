@@ -14,15 +14,15 @@ end
 
 function intrologo:dt(dt)
 	for i,v in ipairs(logos) do
-		if v.y < 5 then
+		if v.y < 180 then
 			v.y = v.y + dt + 0.2
 		end
-		if v.y >= 5  then
+		if math.floor(v.y) == 180 then
 			--love.audio.play(logosound)
+			v.y = 500
 			table.remove( logos, 1 )
-			onscreens[1].y = 0
 			onscreens[2].y = 0
-			story_num = story_num +1
+			story_num = 1
 		end
 	end
 end
