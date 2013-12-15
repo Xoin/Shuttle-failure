@@ -1,17 +1,42 @@
 -- Intro
 
+story_num = 0
+
 onscreendialogs = {}
 
 function onscreendialogs:load()
-	-- body
+	font = love.graphics.newFont(9)
+	love.graphics.setFont(font)
+	-- art here
+	png_dialog = love.graphics.newImage("art/dialogbox.png")
+	onscreens[1].art = love.graphics.newImage("art/persons/blank.png")
+	onscreens[2].art = love.graphics.newImage("art/dialogbox.png")
+	onscreens[3].art = love.graphics.newImage("art/dialogbox.png")
+	dialog_text = ""
 end
 
 function onscreendialogs:dt(dt)
-	-- body
+	if story_num > 0 then
+		dialog_text = story_num
+	end
 end
 
 function onscreendialogs:draw()
-	-- body
+	for i,v in ipairs(onscreens) do
+    	love.graphics.draw(v.art, v.x, v.y)
+	end
+	love.graphics.print(dialog_text, 8, 104)
+end
+
+function love.keyreleased(key)
+	if dialogs[story_num].canskip == true then 
+	    if key=="return" or key=="kpenter" then
+	        story_num = story_num + 1
+	    end 
+	end
+	if key=="escape" then
+	    love.event.quit()
+	end 
 end
 
 dialogs = {}
@@ -29,22 +54,10 @@ for i=1,12 do
     table.insert(dialogs, dialog)
 end
 
-dialogs[1].main = " "
-dialogs[1].a = " "
-dialogs[1].b = " "
-dialogs[1].qa = " "
-dialogs[1].qb = " "
+dialogs[1].main = "The year is 2046, you are in a\nspace station oribiting mars,\nyou are about to witness..."
 dialogs[1].canskip = true
-dialogs[1].canchoose = false
-dialogs[1].skipto = 0
 dialogs[1].artdisplay = 1
 
-dialogs[2].main = "123456789012345678\nThat should be long\nlonglongff"
-dialogs[2].a = "Answer A"
-dialogs[2].b = "Answer B"
-dialogs[2].qa = "Question A"
-dialogs[2].qb = "Question B"
-dialogs[2].canskip = true
-dialogs[2].canchoose = false
-dialogs[2].skipto = 0
+dialogs[2].main = "a series of events that will change your life."
+dialogs[2].canskip = false
 dialogs[2].artdisplay = 1

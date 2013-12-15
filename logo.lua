@@ -22,7 +22,7 @@ function intrologo:dt(dt)
 			table.remove( logos, 1 )
 			onscreens[1].y = 0
 			onscreens[2].y = 0
-			dialog_text = dialogs[story_num].a 
+			story_num = story_num +1
 		end
 	end
 end

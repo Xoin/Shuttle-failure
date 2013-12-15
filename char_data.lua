@@ -1,5 +1,5 @@
 onscreens = {}
-for i=1,2 do
+for i=1,12 do
     onscreen = {}
     onscreen.x = 0
     onscreen.y = -140

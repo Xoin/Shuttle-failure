@@ -12,33 +12,20 @@
 require "dialog"
 require "char_data"
 require "logo"
-story_num = 1
 
 function love.load()
 	love.graphics.setBackgroundColor( 15, 56, 15)
 	intrologo:load()
 	background = love.graphics.newImage("art/background.png")
-	font = love.graphics.newFont(9)
-	love.graphics.setFont(font)
-	-- art here
-	png_dialog = love.graphics.newImage("art/dialogbox.png")
-	onscreens[1].art = love.graphics.newImage("art/persons/blank.png")
-	onscreens[2].art = love.graphics.newImage("art/dialogbox.png")
-	dialog_text = ""
+	onscreendialogs:load()
 end
 
 function love.draw()
 	intrologo:draw()
-	for i,v in ipairs(onscreens) do
-    	love.graphics.draw(v.art, v.x, v.y)
-	end
-	love.graphics.print(dialog_text, 8, 104)
+	onscreendialogs:draw()
 end
 
 function love.update(dt)
 	intrologo:dt(dt)
-	if dialog_text == dialogs[story_num].a then
-		dialog_text = dialogs[story_num].main
-		story_num = story_num + 1
-	end
+	onscreendialogs:dt(dt)
 end
