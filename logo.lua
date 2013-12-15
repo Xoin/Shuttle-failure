@@ -1,7 +1,6 @@
 intrologo = {}
 
 function intrologo:load()
-	logosound = love.audio.newSource("sound/start.wav", "static")
 	logod = love.graphics.newImage("art/love.png")
 end
 
@@ -18,7 +17,6 @@ function intrologo:dt(dt)
 			v.y = v.y + dt + 0.2
 		end
 		if math.floor(v.y) == 180 then
-			--love.audio.play(logosound)
 			v.y = 500
 			table.remove( logos, 1 )
 			onscreens[2].y = 0
